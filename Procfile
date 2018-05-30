@@ -1,0 +1,1 @@
+web: python Kts_Indicator_bot.py
