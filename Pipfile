@@ -8,4 +8,4 @@ python_full_version = "3.6.2"
 requests = { extras = ['socks'] }
 telebot = {version="*", index="pypi"}
 numpy = {version="*", index="pypi"}
-talib = {version="*", index="pypi"}
+TA-Lib = {version="*", index="pypi"}
