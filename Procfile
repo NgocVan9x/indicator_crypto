@@ -1,1 +1,1 @@
-web: python Kts_Indicator_bot.py
+web: python conversationbot.py
