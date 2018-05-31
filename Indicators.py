@@ -180,7 +180,7 @@ def getData(symbol,interval):
 
     # ##### Calculate U Oscilator(14) and print to console    --> DONE    #####
     # print ("########    U Oscilator(7,14,28)    ##########")
-    results+="5. U Oscilator(7,14,28) = "
+    results+="10. U Oscilator(7,14,28) = "
     uo = ULTOSC(inputs, timeperiod1=7, timeperiod2=14, timeperiod3=28)
     adx_type = "U Oscilator(7,14,28)"
      ## count
