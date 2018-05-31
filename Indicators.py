@@ -114,7 +114,7 @@ def getData(symbol,interval):
 
    ##### Calculate ADX(14) and print to console    --> DONE    #####
     # print ("########    ADX(14)    ##########")
-    results+="3. ADX(14) = "
+    results+="5. ADX(14) = "
     adx = ADX(inputs, timeperiod=14)
     adx_type = "ADX(14)"
      ## count
@@ -130,7 +130,7 @@ def getData(symbol,interval):
     
     ##### Calculate William%R(14) and print to console    --> DONE    #####
     # print ("########    William%R(14)    ##########")
-    results+="4. William%R(14) = "
+    results+="6. William%R(14) = "
     wr = WILLR(inputs, timeperiod=14)
     adx_type = "William%R(14)"
      ## count
