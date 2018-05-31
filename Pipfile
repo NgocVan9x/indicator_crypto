@@ -6,4 +6,4 @@ name = 'pypi'
 python_full_version = "2.7.15"
 [packages]
 requests = { extras = ['socks'] }
-python-telegram-bot
+python-telegram-bot = {version="*", index="pypi"}
