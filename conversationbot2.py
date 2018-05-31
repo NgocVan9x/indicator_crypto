@@ -4,7 +4,7 @@ This Example will show you how to use register_next_step handler.
 """
 import time
 import telebot
-from telebot import types
+# from telebot import types
 from Indicators import *
 
 API_TOKEN = '617289038:AAEFcSERrsI_N65ZHTWu0EapdOGWF5rs4c4'
