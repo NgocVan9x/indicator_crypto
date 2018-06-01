@@ -6,35 +6,61 @@ import json
 def to_str(var):
     return str(list(numpy.reshape(numpy.asarray(var), (1, numpy.size(var)))[0]))[1:-1]
 
-def getData(symbol,interval):
+interval_stand={
+  "1m":60,
+  "3m":180,
+  "5m":300,
+  "15m":900,
+	"30m":1800,
+	"1h":3600,
+	"2h":7200,
+	"4h":14400,
+	"6h":21600,
+	"12h":43200,
+	"1d":86400,
+	"3d":259200,
+	"1w":604800,
+}
+def getInteval(var):
+  return interval_stand[var]
+def getData(symbol,interval, market):
     #reset
     count_buy = 0
     count_sell = 0
     count_neutural = 0
-
-    url = 'https://api.binance.com/api/v1/klines'
-    headers = {
-            "Accept": "application/json",
-        }
-    params = {
-      'symbol':symbol.upper(),
-      'interval':interval
-    }
-    response = requests.get(url=url,params=params,headers=headers)
-    fuck= response.json()
-    i=0;
     arr_close =[]
     arr_high=[]
     arr_low =[]
     arr_open =[]
     arr_volume =[]
+    headers = {
+              "Accept": "application/json",
+          }
+    fuck=None
+    if market =="binance":
+      url = 'https://api.binance.com/api/v1/klines'
+      params = {
+        'symbol':symbol.upper(),
+        'interval':interval
+      }
+      response = requests.get(url=url,params=params,headers=headers)
+      fuck= response.json()
+    else:
+      url = 'https://api.cryptowat.ch/markets/'+market+'/'+symbol+'/ohlc'
+      params = {
+        'periods':getInteval(interval),
+      }
+      response = requests.get(url=url,params=params,headers=headers)
+      fuck= response.json()
+      fuck = fuck["result"][str(getInteval(interval))]
+    i=0
     while i < len(fuck):
-      arr_open.append(float(fuck[i][1]))
-      arr_high.append(float(fuck[i][2]))
-      arr_low.append(float(fuck[i][3]))
-      arr_close.append(float(fuck[i][4]))
-      arr_volume.append(float(fuck[i][5]))
-      i+=1
+        arr_open.append(float(fuck[i][1]))
+        arr_high.append(float(fuck[i][2]))
+        arr_low.append(float(fuck[i][3]))
+        arr_close.append(float(fuck[i][4]))
+        arr_volume.append(float(fuck[i][5]))
+        i+=1
     inputs = {
       'open':  numpy.array(arr_open),
       'high': numpy.array(arr_high),
@@ -390,3 +416,5 @@ def getData(symbol,interval):
     # print  ema200[-1]
     results+="total buy signals:"+ str(count_buy) +"\n" +"total sell signal:" +str(count_sell)+"\n"+"total neutural signal:"+"\n"+str(count_neutural)
     return results
+# if __name__ == '__main__':
+#     getData("btcusdt","1d","bittrex")

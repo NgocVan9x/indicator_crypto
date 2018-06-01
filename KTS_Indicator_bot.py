@@ -22,7 +22,7 @@ class User:
 
 
 # Handle '/start' and '/help'
-@bot.message_handler(commands=['help', 'start'])
+@bot.message_handler(commands=['start'])
 def send_welcome(message):
     msg = bot.reply_to(message, "Add to list")
     bot.register_next_step_handler(msg, send_data_indicator)
@@ -31,7 +31,7 @@ def send_data_indicator(message):
     try:
         # params = message.text[3:len(message.text)]
         params=message.text.split(",")
-        data = getData(params[0],params[1])
+        data = getData(params[0],params[1],params[2])
         bot.reply_to(message, data)
     except Exception as e:
         bot.reply_to(message, 'oooops'+str(e))
