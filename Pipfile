@@ -6,6 +6,6 @@ name = 'pypi'
 python_full_version = "3.6.2"
 [packages]
 requests = { extras = ['socks'] }
-telebot = {version="*", index="pypi"}
+pyTelegramBotAPI = {version="*", index="pypi"}
 numpy = {version="*", index="pypi"}
 TA-Lib = {version="*", index="pypi"}
