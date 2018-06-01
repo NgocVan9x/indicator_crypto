@@ -1,5 +1,4 @@
 requests==2.18.4
 numpy==1.14.3
 pyTelegramBotAPI==3.6.3
-requests[security]
 TA-Lib==0.4.17
