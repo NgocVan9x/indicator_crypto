@@ -2,3 +2,7 @@ requests==2.18.4
 numpy==1.14.3
 pyTelegramBotAPI==3.6.3
 TA-Lib==0.4.17
+matplotlib==2.2.2
+pandas==0.23.0
+six==1.11.0
+Pillow==4.3.0
