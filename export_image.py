@@ -27,9 +27,9 @@ def render_mpl_table(data, title,font_size=12, row_colors=['#f1f1f2', 'w'], edge
 
     for k, cell in  six.iteritems(mpl_table._cells):
         if k[1]==2:
-            if cell.get_text().get_text() == "Buy":
+            if cell.get_text().get_text() == "Buy" or cell.get_text().get_text() == "Strong Buy":
                 cell.set_text_props( color='#00cc00')
-            if cell.get_text().get_text() == "Sell":
+            if cell.get_text().get_text() == "Sell" or cell.get_text().get_text() == "Strong Sell":
                 cell.set_text_props(color='#ff3300')
         cell.set_edgecolor(edge_color)
         cell.set_facecolor(row_colors[k[0]%len(row_colors) ])
