@@ -502,7 +502,7 @@ def getData(symbol,interval, market):
         count_sell+=1
         results['Type'].append('Sell')
 
-    results['Number'].append(to_str(round(sma200[-1], 6)))
+    results['Number'].append(to_str(round(ema200[-1], 6)))
     # results['Type'].append('-')
     results['Number'].append(to_str(count_buy))
     results['Type'].append('Buy')
