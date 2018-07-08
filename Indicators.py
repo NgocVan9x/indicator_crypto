@@ -92,8 +92,8 @@ def getData(symbol,interval, market):
     results={}
     results['Number']=[]
     results['Type']=[]
-    results['Type'].append('-')
-    results['Number'].append("-")
+    results['Type'].append(to_str(round(arr_close[-1], 6)))
+    results['Number'].append(to_str(round(arr_close[-1], 6)))
     results['Type'].append('-')
     results['Number'].append("-")
 
@@ -170,7 +170,7 @@ def getData(symbol,interval, market):
     else:
       if macdsignal[-1] > macd[-1]:
         count_buy += 1
-        if macdhist[-1] >=0:
+        if macdsignal[-1] >=0 and macd[-1] >=0:
           results['Type'].append('Strong Buy')
         else:
           results['Type'].append('Buy')
@@ -179,10 +179,10 @@ def getData(symbol,interval, market):
         results['Type'].append('neutural')
       else:
         count_sell+=1
-        if macdhist[-1] >=0:
-          results['Type'].append('Sell')
-        else:
+        if macdsignal[-1] <0 and macd[-1] <0:
           results['Type'].append('Strong Sell')
+        else:
+          results['Type'].append('Sell')
     results['Number'].append(to_str(round(macd[-1],4))+"  "+to_str(round(macdsignal[-1],4))+"  "+to_str(round(macdhist[-1],4)))
     # results['Type'].append('-')
     #### Calculate ADX(14) and print to console    --> DONE    #####
@@ -305,7 +305,7 @@ def getData(symbol,interval, market):
       count_neutural +=1
       results['Type'].append('-')
     else:
-      if sma5[-1] > sma5_stand:
+      if sma5[-1] < sma5_stand:
         count_buy += 1
         results['Type'].append('Buy')
       elif sma5[-1] == sma5_stand:
@@ -322,7 +322,7 @@ def getData(symbol,interval, market):
       count_neutural +=1
       results['Type'].append('-')
     else:
-      if sma10[-1] > sma10_stand:
+      if sma10[-1] < sma10_stand:
         count_buy += 1
         results['Type'].append('Buy')
       elif sma10[-1] == sma10_stand:
@@ -339,7 +339,7 @@ def getData(symbol,interval, market):
       count_neutural +=1
       results['Type'].append('-')
     else:
-      if sma20[-1] > sma20_stand:
+      if sma20[-1] < sma20_stand:
         count_buy += 1
         results['Type'].append('Buy')
       elif sma20[-1] == sma20_stand:
@@ -356,7 +356,7 @@ def getData(symbol,interval, market):
       count_neutural +=1
       results['Type'].append('-')
     else:
-      if sma50[-1] > sma50_stand:
+      if sma50[-1] < sma50_stand:
         count_buy += 1
         results['Type'].append('Buy')
       elif sma50[-1] == sma50_stand:
@@ -373,7 +373,7 @@ def getData(symbol,interval, market):
       count_neutural +=1
       results['Type'].append('-')
     else:
-      if sma100[-1] > sma100_stand:
+      if sma100[-1] < sma100_stand:
         count_buy += 1
         results['Type'].append('Buy')
       elif sma100[-1] == sma100_stand:
@@ -390,7 +390,7 @@ def getData(symbol,interval, market):
       count_neutural +=1
       results['Type'].append('-')
     else:
-      if sma200[-1] > sma200_stand:
+      if sma200[-1] < sma200_stand:
         count_buy += 1
         results['Type'].append('Buy')
       elif sma200[-1] == sma200_stand:
@@ -407,7 +407,7 @@ def getData(symbol,interval, market):
       count_neutural +=1
       results['Type'].append('-')
     else:
-      if ema5[-1] > ema5_stand:
+      if ema5[-1] < ema5_stand:
         count_buy += 1
         results['Type'].append('Buy')
       elif ema5[-1] == ema5_stand:
@@ -424,7 +424,7 @@ def getData(symbol,interval, market):
       count_neutural +=1
       results['Type'].append('-')
     else:
-      if ema10[-1] > ema10_stand:
+      if ema10[-1] < ema10_stand:
         count_buy += 1
         results['Type'].append('Buy')
       elif ema10[-1] == ema10_stand:
@@ -441,7 +441,7 @@ def getData(symbol,interval, market):
       count_neutural +=1
       results['Type'].append('-')
     else:
-      if ema20[-1] > ema20_stand:
+      if ema20[-1] < ema20_stand:
         count_buy += 1
         results['Type'].append('Buy')
       elif ema20[-1] == ema20_stand:
@@ -458,7 +458,7 @@ def getData(symbol,interval, market):
       count_neutural +=1
       results['Type'].append('-')
     else:
-      if ema50[-1] > ema50_stand:
+      if ema50[-1] < ema50_stand:
         count_buy += 1
         results['Type'].append('Buy')
       elif ema50[-1] == ema50_stand:
@@ -475,7 +475,7 @@ def getData(symbol,interval, market):
       count_neutural +=1
       results['Type'].append('-')
     else:
-      if ema100[-1] > ema100_stand:
+      if ema100[-1] < ema100_stand:
         count_buy += 1
         results['Type'].append('Buy')
       elif ema100[-1] == ema100_stand:
@@ -492,7 +492,7 @@ def getData(symbol,interval, market):
       count_neutural +=1
       results['Type'].append('-')
     else:
-      if ema200[-1] > ema200_stand:
+      if ema200[-1] < ema200_stand:
         count_buy += 1
         results['Type'].append('Buy')
       elif ema200[-1] == ema200_stand:
