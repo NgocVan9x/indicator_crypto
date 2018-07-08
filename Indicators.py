@@ -129,16 +129,62 @@ def getData(symbol,interval, market):
 
     #### Calculate STOCH(9,6) and print to console     --> IN PROGRESS    #####
     slowk, slowd = STOCH(inputs,fastk_period=9, slowk_period=6, slowk_matype=0, slowd_period=6, slowd_matype=0)
+    if numpy.isnan(slowk[-1]):
+      count_neutural +=1
+      results['Type'].append('-')
+    else:
+      if slowk[-1] > 55 and slowk[-1] <80:
+        count_buy += 1
+        if slowk[-1] >60:
+          results['Type'].append('Strong Buy')
+        else:
+          results['Type'].append('Buy')
+      elif slowk[-1] >80:
+        count_neutural +=1
+        results['Type'].append('Overbought')
+      elif slowk[-1] < 55 and slowk[-1]>45:
+        count_neutural +=1
+        results['Type'].append('neutural')
+      else:
+        count_sell+=1
+        if slowk[-1]<45 and slowk[-1] > 40:
+          results['Type'].append('Sell')
+        if slowk[-1]<40 and slowk[-1][-1]>20:
+          results['Type'].append('Strong Sell')
+        elif slowk[-1]<20:
+          results['Type'].append('Over Sell')
+        # else:
+        #   results['Type'].append('Sell')
+    # results['Number'].append(to_str(round(real[-1], 6)))
     results['Number'].append(to_str(round(slowk[-1],3))+"--"+to_str(round(slowd[-1],3)))
-    results['Type'].append('-')
+    # results['Type'].append('-')
     #### Calculate STOCHRSI(14) and print to console     --> IN PROGRESS    #####
     fastk, fastd = STOCHRSI(inputs, timeperiod=14, fastk_period=5, fastd_period=3, fastd_matype=0)
     results['Number'].append(to_str(round(fastk[-1],3))+"--"+to_str(round(fastd[-1],3)))
     results['Type'].append('-')
     #### Calculate MACD(12,26,9) and print to console     --> IN PROGRESS    #####
     macd, macdsignal, macdhist = MACD(inputs, fastperiod=12, slowperiod=26, signalperiod=9)
-    results['Number'].append(to_str(round(macd[-1],4))+"-"+to_str(round(macdsignal[-1],4))+"-"+to_str(round(macdhist[-1],4)))
-    results['Type'].append('-')
+    if numpy.isnan(macdsignal[-1]):
+      count_neutural +=1
+      results['Type'].append('-')
+    else:
+      if macdsignal[-1] > macd[-1]:
+        count_buy += 1
+        if macdhist[-1] >=0:
+          results['Type'].append('Strong Buy')
+        else:
+          results['Type'].append('Buy')
+      elif macdsignal[-1] == macd[-1]:
+        count_neutural +=1
+        results['Type'].append('neutural')
+      else:
+        count_sell+=1
+        if macdhist[-1] >=0:
+          results['Type'].append('Sell')
+        else:
+          results['Type'].append('Strong Sell')
+    results['Number'].append(to_str(round(macd[-1],4))+"  "+to_str(round(macdsignal[-1],4))+"  "+to_str(round(macdhist[-1],4)))
+    # results['Type'].append('-')
     #### Calculate ADX(14) and print to console    --> DONE    #####
     adx = ADX(inputs, timeperiod=14)
     ## count
