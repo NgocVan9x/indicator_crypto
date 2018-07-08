@@ -5,8 +5,8 @@ import six
 import time
 import matplotlib.cbook as cbook
 from PIL import Image
-import matplotlib
-matplotlib.use('Agg')
+# import matplotlib
+# matplotlib.use('Agg')
 df = pd.DataFrame()
 df['Indicator'] = ['Day Ragnge','TD Sequential','RSI(14)', 'STOCH(9,6)', 'STOCHRSI(14)','MACD(12,26,9)','ADX(14)','William%R(14)','CCI(14)','ATR(14)'
     ,'HIGHS/LOWS(14)','U Oscilator(7,14,28)','ROC(9)','SMA(5)','SMA(10)','SMA(20)','SMA(50)','SMA(100)','SMA(200)'

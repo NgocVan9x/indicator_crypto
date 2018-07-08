@@ -168,7 +168,7 @@ def getData(symbol,interval, market):
       count_neutural +=1
       results['Type'].append('-')
     else:
-      if macdsignal[-1] > macd[-1]:
+      if macd[-1] >macdsignal[-1]:
         count_buy += 1
         if macdsignal[-1] >=0 and macd[-1] >=0:
           results['Type'].append('Strong Buy')
