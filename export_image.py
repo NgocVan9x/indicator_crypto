@@ -39,7 +39,8 @@ def render_mpl_table(data, title,font_size=12, row_colors=['#f1f1f2', 'w'], edge
     im = np.array(im).astype(np.float) / 255
     # plt.plot(np.arange(10), 4 * np.arange(10))
     fig.figimage(im, 0, fig.bbox.ymax - height)
-    fileName=str(int(time.time()))+".png"
+    # fileName=str(int(time.time()))+".png"
+    fileName="data_image.png"
     ax.set_title(title,color='green', fontsize=20,fontweight='bold')
     plt.savefig(fileName)
     plt.close('all')

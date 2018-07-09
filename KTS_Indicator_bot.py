@@ -29,7 +29,7 @@ def send_data_indicator(message):
         fileName = render_mpl_table(data,title)
         # bot.reply_to(message, data)
         bot.send_photo(chat_id=message.chat.id, photo=open('./'+fileName, 'rb'))
-        os.remove('./'+fileName)
+        # os.remove('./'+fileName)
     except Exception as e:
         bot.reply_to(message, 'oooops '+"anh ơi anh gõ từ từ thôi anh "+str(e))
     finally:
