@@ -31,17 +31,17 @@ def send_data_indicator(message):
         bot.send_photo(chat_id=message.chat.id, photo=open('./'+fileName, 'rb'))
         os.remove('./'+fileName)
     except Exception as e:
-        bot.reply_to(message, 'oooops'+str(e))
+        bot.reply_to(message, 'oooops '+"anh ơi anh gõ từ từ thôi anh "+str(e))
     finally:
         bot.register_next_step_handler(message, send_data_indicator)
 
-def main_loop():
-    bot.polling(True)
-    while 1:
-        time.sleep(1)
-if __name__ == '__main__':
-    try:
-        main_loop()
-    except KeyboardInterrupt:
-        print >> sys.stderr, '\nExiting by user request.\n'
-        sys.exit(0)
+# def main_loop():
+bot.polling(True)
+#     while 1:
+#         time.sleep(1)
+# if __name__ == '__main__':
+#     try:
+#         main_loop()
+#     except KeyboardInterrupt:
+#         print >> sys.stderr, '\nExiting by user request.\n'
+#         sys.exit(0)

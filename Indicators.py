@@ -474,9 +474,6 @@ def calculate(inputs):
   return results
 def getData(symbol,interval, market):
     #reset
-    count_buy = 0
-    count_sell = 0
-    count_neutural = 0
     arr_close =[]
     arr_high=[]
     arr_low =[]
