@@ -4,7 +4,7 @@ import telebot
 import sys
 import logging
 import os
-from Indicators import getData
+from Indicators import getData, calculate
 from export_image import render_mpl_table
 
 API_TOKEN = '617289038:AAEFcSERrsI_N65ZHTWu0EapdOGWF5rs4c4'
@@ -23,7 +23,8 @@ def send_data_indicator(message):
     try:
         # params = message.text[3:len(message.text)]
         params=message.text.split(",")
-        data = getData(params[0],params[1],params[2])
+        inputs = getData(params[0],params[1],params[2])
+        data = calculate(inputs)
         title=message.text.upper()
         fileName = render_mpl_table(data,title)
         # bot.reply_to(message, data)
@@ -37,7 +38,7 @@ def send_data_indicator(message):
 def main_loop():
     bot.polling(True)
     while 1:
-        time.sleep(3)
+        time.sleep(1)
 if __name__ == '__main__':
     try:
         main_loop()
