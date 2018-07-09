@@ -10,6 +10,7 @@ from PIL import Image
 def render_mpl_table(data, title,font_size=12, row_colors=['#f1f1f2', 'w'], edge_color='w',
                      bbox=[0, 0, 1, 1],
                      ax=None, **kwargs):
+    time.sleep(0.1)
     df = pd.DataFrame()
     df['Indicator'] = ['Day Ragnge','TD Sequential','RSI(14)', 'STOCH(9,6)', 'STOCHRSI(14)','MACD(12,26,9)','ADX(14)','William%R(14)','CCI(14)','ATR(14)'
     ,'HIGHS/LOWS(14)','U Oscilator(7,14,28)','ROC(9)','SMA(5)','SMA(10)','SMA(20)','SMA(50)','SMA(100)','SMA(200)'
@@ -42,6 +43,7 @@ def render_mpl_table(data, title,font_size=12, row_colors=['#f1f1f2', 'w'], edge
     fileName=str(int(time.time()))+".png"
     ax.set_title(title,color='green', fontsize=20,fontweight='bold')
     plt.savefig(fileName)
+    plt.close()
     return fileName
 if __name__ == '__main__':
     data={}
