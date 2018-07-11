@@ -34,7 +34,7 @@ def calculate(inputs):
   adx_stand=20
   wr_stand=-45
   uo_stand=10
-  roc_stand=10
+  roc_stand=0
   ema5_stand=inputs['close'][-1]
   ema10_stand=inputs['close'][-1]
   ema20_stand=inputs['close'][-1]
@@ -47,7 +47,7 @@ def calculate(inputs):
   sma50_stand=inputs['close'][-1]
   sma100_stand=inputs['close'][-1]
   sma200_stand=inputs['close'][-1]
-  atr_stand=10
+  atr_stand=inputs['close'][-1]*0.1
   cci_stand=0
   results={}
   results['Number']=[]
@@ -218,16 +218,14 @@ def calculate(inputs):
 
   # ##### Calculate ATR(14) and print to console    --> IN PROFRESS    #####
   atr = ATR(inputs, timeperiod=14)
-  # if atr[-1] > atr_stand:
-  #   count_buy += 1
-  #   results['Type'].append('Buy')
-  # elif atr[-1] == atr_stand:
-  #   count_neutural +=1
-  #   results['Type'].append('neutural')
-  # else:
-  #   count_sell+=1
-  #   results['Type'].append('Sell')
-  results['Type'].append('-')
+  if numpy.isnan(atr[-1]):
+    count_neutural +=1
+    results['Type'].append('-')
+  else:
+    if atr[-1] > atr_stand:
+      results['Type'].append('More Volatility')
+    else:
+      results['Type'].append('Less Volatility')
   results['Number'].append(to_str(round(atr[-1], 6)))
   #### Calculate HIGHS/LOWS(14) and print to console     --> IN PROGRESS    #####
   results['Number'].append("-")
@@ -235,30 +233,49 @@ def calculate(inputs):
   # ##### Calculate U Oscilator(14) and print to console    --> DONE    #####
   uo = ULTOSC(inputs, timeperiod1=7, timeperiod2=14, timeperiod3=28)
   ## count
-  # if uo[-1] > wr_stand:
-  #   count_buy += 1
-  #   results['Type'].append('Buy')
-  # elif uo[-1] == wr_stand:
-  #   count_neutural +=1
-  #   results['Type'].append('neutural')
-  # else:
-  #   count_sell+=1
-  #   results['Type'].append('Sell')
+  if numpy.isnan(uo[-1]):
+    count_neutural +=1
+    results['Type'].append('-')
+  else:
+    if uo[-1] > 50 and uo[-1] < 70:
+      count_buy += 1
+      if uo[-1] >60:
+        results['Type'].append('Strong Buy')
+      else:
+        results['Type'].append('Buy')
+    elif uo[-1]>70:
+        count_neutural +=1
+        results['Type'].append('Overbought')
+    elif uo[-1] == 50:
+      count_neutural +=1
+      results['Type'].append('neutural')
+    else:
+      count_sell+=1
+      if uo[-1] <40 and uo[-1] >30:
+        results['Type'].append('Strong Sell')
+      elif uo[-1] <30:
+        results['Type'].append('OverSell')
+      else:
+        results['Type'].append('Sell')
   results['Number'].append(to_str(round(uo[-1], 6)))
-  results['Type'].append('-')
+  # results['Type'].append('-')
   # ##### Calculate ROC(9) and print to console    --> DONE    #####
   roc = ROC(inputs, timeperiod=9)
-  # if roc[-1] > roc_stand:
-  #   count_buy += 1
-  #   results['Type'].append('Buy')
-  # elif roc[-1] == roc_stand:
-  #   count_neutural +=1
-  #   results['Type'].append('neutural')
-  # else:
-  #   count_sell+=1
-  #   results['Type'].append('Sell')
+  if numpy.isnan(roc[-1]):
+    count_neutural +=1
+    results['Type'].append('-')
+  else:
+    if roc[-1] > roc_stand:
+      count_buy += 1
+      results['Type'].append('Buy')
+    elif roc[-1] == roc_stand:
+      count_neutural +=1
+      results['Type'].append('neutural')
+    else:
+      count_sell+=1
+      results['Type'].append('Sell')
   results['Number'].append(to_str(round(roc[-1], 6)))
-  results['Type'].append('-')
+  # results['Type'].append('-')
   # #### Calculate SMA(5) and print to console    --> DONE    #####
   sma5 = SMA(inputs, timeperiod=5)
   if numpy.isnan(sma5[-1]):

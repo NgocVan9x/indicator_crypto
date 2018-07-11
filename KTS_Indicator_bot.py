@@ -36,7 +36,12 @@ def send_data_indicator(message):
         bot.register_next_step_handler(message, send_data_indicator)
 
 # def main_loop():
-bot.polling(True)
+while True :
+    try:
+        bot.polling(none_stop=True)
+    except Exception as e:
+        print(e)
+        time.sleep(15)
 #     while 1:
 #         time.sleep(1)
 # if __name__ == '__main__':
