@@ -42,11 +42,3 @@ while True :
     except Exception as e:
         print(e)
         time.sleep(15)
-#     while 1:
-#         time.sleep(1)
-# if __name__ == '__main__':
-#     try:
-#         main_loop()
-#     except KeyboardInterrupt:
-#         print >> sys.stderr, '\nExiting by user request.\n'
-#         sys.exit(0)
