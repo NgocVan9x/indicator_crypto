@@ -7,7 +7,7 @@ import os
 from Indicators import getData, calculate
 from export_image import render_mpl_table
 
-API_TOKEN = '617289038:AAEFcSERrsI_N65ZHTWu0EapdOGWF5rs4c4'
+API_TOKEN = ''
 
 bot = telebot.TeleBot(API_TOKEN)
 
