@@ -9,7 +9,7 @@ from datetime import datetime
 from pytz import timezone
 import os
 
-API_TOKEN = '606110477:AAGWe3zrCNb7P5QObt6qUsKLq_XuA0k4y0Y'
+API_TOKEN = '659604163:AAEfhonOKmaG1-qyt2Ivlz5oUQ_YaNbBFqo'
 
 bot = telebot.TeleBot(API_TOKEN)
 
@@ -52,17 +52,12 @@ def getDataAndSendBot(chat_ids, price, interval_stand = '4h',market = 'binance')
            bot.send_message(chat_id, "Current time " + now_utc.strftime(fmt))
            bot.send_photo(chat_id=chat_id, photo=open('./'+fileName, 'rb'))
 
-# if __name__ == '__main__':
-#     # getDataFromBinance()
-#     f=open("chat_ids.txt", "r")
-#     if f.mode == 'r':
-#       contents =f.read()
-#       print(contents)
-schedule.every(30).minutes.do(getDataFromBinance)
-while True :
-    try:
-        schedule.run_pending()
-        time.sleep(1)
-    except Exception as e:
-        print(e)
-        time.sleep(15)
+if __name__ == '__main__':
+    schedule.every(30).minutes.do(getDataFromBinance)
+    while True :
+        try:
+            schedule.run_pending()
+            time.sleep(1)
+        except Exception as e:
+            print(e)
+            time.sleep(15)
