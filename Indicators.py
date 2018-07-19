@@ -28,6 +28,7 @@ def calculate(inputs):
   count_buy = 0
   count_sell = 0
   count_neutural = 0
+  count_over_sell = 0
    # print(arr_close[-1])
   rsi_stand=50
   sma10_stand=10
@@ -83,6 +84,7 @@ def calculate(inputs):
         results['Type'].append('Strong Sell')
       elif real[-1]<30:
         results['Type'].append('Over Sell')
+        count_over_sell+=1
       else:
         results['Type'].append('Sell')
   results['Number'].append(to_str(round(real[-1], 6)))
@@ -113,6 +115,7 @@ def calculate(inputs):
         results['Type'].append('Strong Sell')
       elif slowk[-1]<20:
         results['Type'].append('Over Sell')
+        count_over_sell+=1
       # else:
       #   results['Type'].append('Sell')
   # results['Number'].append(to_str(round(real[-1], 6)))
@@ -185,6 +188,7 @@ def calculate(inputs):
         results['Type'].append('Strong Sell')
       elif wr[-1]<-80:
         results['Type'].append('Over Sell')
+        count_over_sell+=1
       else:
         results['Type'].append('Sell')
   results['Number'].append(to_str(round(wr[-1],6)))
@@ -212,6 +216,7 @@ def calculate(inputs):
         results['Type'].append('Strong Sell')
       elif cci[-1] <-200:
         results['Type'].append('OverSell')
+        count_over_sell+=1
       else:
         results['Type'].append('Sell')
   results['Number'].append(to_str(round(cci[-1], 6)))
@@ -255,6 +260,7 @@ def calculate(inputs):
         results['Type'].append('Strong Sell')
       elif uo[-1] <30:
         results['Type'].append('OverSell')
+        count_over_sell+=1
       else:
         results['Type'].append('Sell')
   results['Number'].append(to_str(round(uo[-1], 6)))
@@ -487,6 +493,8 @@ def calculate(inputs):
   results['Type'].append('Sell')
   results['Number'].append(to_str(count_neutural))
   results['Type'].append('neutural')
+  results['Number'].append(to_str(count_over_sell))
+  results['Type'].append('Over Sell')
   # print(len(results['Type']),len(results['Number']))
   return results
 def getData(symbol,interval, market):
