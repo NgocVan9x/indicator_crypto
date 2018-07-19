@@ -16,12 +16,8 @@ bot = telebot.TeleBot(API_TOKEN)
 def send_welcome(message):
     chat_ids = getChatId()
     if message.chat.id not in chat_ids:
-        f=open("chat_ids.txt", "r")
-        if f.mode == 'r':
-          contents =f.read()
-        contents+=str(message.chat.id)+'\n'
-        f = open('chat_ids.txt','w')
-        f.write(contents)
+        f = open('chat_ids.txt',"a")
+        f.write(str(message.chat.id)+'\n')
         f.close()
     bot.reply_to(message, "Added to list")
 

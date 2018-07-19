@@ -15,7 +15,7 @@ bot = telebot.TeleBot(API_TOKEN)
 
 def getChatId():
     array = []
-    if os.path.exists("myfile.dat"):
+    if os.path.exists("chat_ids.txt"):
         with open("chat_ids.txt", "r") as ins:
             for line in ins:
                 if line[0].isdigit():
