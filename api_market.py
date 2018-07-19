@@ -9,7 +9,7 @@ from datetime import datetime
 from pytz import timezone
 import os
 
-API_TOKEN = '659604163:AAEfhonOKmaG1-qyt2Ivlz5oUQ_YaNbBFqo'
+API_TOKEN = 
 
 bot = telebot.TeleBot(API_TOKEN)
 
