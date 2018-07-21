@@ -15,10 +15,15 @@ def render_mpl_table(data, title,font_size=12, row_colors=['#f1f1f2', 'w'], edge
     df = pd.DataFrame()
     df['Indicator'] = ['Day Ragnge','TD Sequential','RSI(14)', 'STOCH(9,6)', 'STOCHRSI(14)','MACD(12,26,9)','ADX(14)','William%R(14)','CCI(14)','ATR(14)'
     ,'HIGHS/LOWS(14)','U Oscilator(7,14,28)','ROC(9)','SMA(5)','SMA(10)','SMA(20)','SMA(50)','SMA(100)','SMA(200)'
-    ,'EMA(5)','EMA(10)','EMA(20)','EMA(50)','EMA(100)','EMA(200)','total buy signals:','total sell signal:','total neutural signal:','total over sell:'
+    ,'EMA(5)','EMA(10)','EMA(20)','EMA(50)','EMA(100)','EMA(200)','total buy signals:','total sell signal:','total neutural signal:'
     ]
+    del data['Number'][-1]
+    del data['Type'][-1]
+    del data['Number'][-1]
+    del data['Type'][-1]
     df['Number']=data['Number']
     df['Type']=data['Type']
+    
     # if ax is None:
     fig, ax = plt.subplots(figsize=(10, 10))
     fig.patch.set_visible(False)

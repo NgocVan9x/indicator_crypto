@@ -9,7 +9,7 @@ from datetime import datetime
 from pytz import timezone
 import os
 
-API_TOKEN = '659604163:AAEfhonOKmaG1-qyt2Ivlz5oUQ_YaNbBFqo'
+API_TOKEN = ''
 
 bot = telebot.TeleBot(API_TOKEN)
 
@@ -37,7 +37,8 @@ def getDataFromBinance():
     
     chat_ids = getChatId()
     for price in prices:
-      getDataAndSendBot(chat_ids,price)
+        if price["symbol"][-3:] == "SDT" or price["symbol"][-3:] == "BTC" :
+            getDataAndSendBot(chat_ids,price)
     return prices
 
 def getDataAndSendBot(chat_ids, price, interval_stand = '4h',market = 'binance'):
@@ -45,7 +46,7 @@ def getDataAndSendBot(chat_ids, price, interval_stand = '4h',market = 'binance')
     data = calculate(inputs)
     fmt = "%Y-%m-%d %H:%M:%S %Z%z"
     now_utc = datetime.now(timezone('Asia/Bangkok'))
-    if int(data['Number'][len(data['Number'])-1]) > 0:
+    if int(data['Number'][len(data['Number'])-2]) > 0 and data['Number'][len(data['Number'])-2]:
         title = price["symbol"].upper()+" "+interval_stand.upper()+" "+ market.upper()
         fileName =  render_mpl_table(data,title)
         for chat_id in chat_ids:
@@ -53,7 +54,8 @@ def getDataAndSendBot(chat_ids, price, interval_stand = '4h',market = 'binance')
            bot.send_photo(chat_id=chat_id, photo=open('./'+fileName, 'rb'))
 
 if __name__ == '__main__':
-    schedule.every(30).minutes.do(getDataFromBinance)
+    # schedule.every(1).minutes.do(getDataFromBinance)
+    schedule.every(3).hour.do(getDataFromBinance)
     while True :
         try:
             schedule.run_pending()

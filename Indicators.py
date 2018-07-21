@@ -28,6 +28,7 @@ def calculate(inputs):
   count_buy = 0
   count_sell = 0
   count_neutural = 0
+  count_macd = False
   count_over_sell = 0
    # print(arr_close[-1])
   rsi_stand=50
@@ -142,6 +143,7 @@ def calculate(inputs):
       results['Type'].append('neutural')
     else:
       count_sell+=1
+      count_macd = True
       if macdsignal[-1] <0 and macd[-1] <0:
         results['Type'].append('Strong Sell')
       else:
@@ -495,6 +497,8 @@ def calculate(inputs):
   results['Type'].append('neutural')
   results['Number'].append(to_str(count_over_sell))
   results['Type'].append('Over Sell')
+  results['Type'].append('macd Sell')
+  results['Number'].append(count_macd)
   # print(len(results['Type']),len(results['Number']))
   return results
 def getData(symbol,interval, market):
