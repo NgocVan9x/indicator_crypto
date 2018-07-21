@@ -55,7 +55,7 @@ def getDataAndSendBot(chat_ids, price, interval_stand = '4h',market = 'binance')
 
 if __name__ == '__main__':
     # schedule.every(1).minutes.do(getDataFromBinance)
-    schedule.every(3).hour.do(getDataFromBinance)
+    schedule.every(60*3).minutes.do(getDataFromBinance)
     while True :
         try:
             schedule.run_pending()
