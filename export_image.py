@@ -8,24 +8,20 @@ import time
 import matplotlib.cbook as cbook
 from PIL import Image
 
-def render_mpl_table(data, title,font_size=12, row_colors=['#f1f1f2', 'w'], edge_color='w',
+def render_mpl_table(data, title, fileName, font_size=12, row_colors=['#f1f1f2', 'w'], edge_color='w',
                      bbox=[0, 0, 1, 1],
                      ax=None, **kwargs):
     time.sleep(0.1)
     df = pd.DataFrame()
-    df['Indicator'] = ['Day Ragnge','TD Sequential','RSI(14)', 'STOCH(9,6)', 'STOCHRSI(14)','MACD(12,26,9)','ADX(14)','William%R(14)','CCI(14)','ATR(14)'
-    ,'HIGHS/LOWS(14)','U Oscilator(7,14,28)','ROC(9)','SMA(5)','SMA(10)','SMA(20)','SMA(50)','SMA(100)','SMA(200)'
+    df['Indicator'] = ['Current Price','RSI(14)', 'STOCH(9,6)','MACD(12,26,9)','William%R(14)','CCI(14)','ATR(14)'
+    ,'U Oscilator(7,14,28)','ROC(9)','SMA(5)','SMA(10)','SMA(20)','SMA(50)','SMA(100)','SMA(200)'
     ,'EMA(5)','EMA(10)','EMA(20)','EMA(50)','EMA(100)','EMA(200)','total buy signals:','total sell signal:','total neutural signal:'
     ]
-    del data['Number'][-1]
-    del data['Type'][-1]
-    del data['Number'][-1]
-    del data['Type'][-1]
     df['Number']=data['Number']
     df['Type']=data['Type']
     
     # if ax is None:
-    fig, ax = plt.subplots(figsize=(10, 10))
+    fig, ax = plt.subplots(figsize=(12, 12))
     fig.patch.set_visible(False)
     ax.axis('off')
     ax.axis('tight')
@@ -47,7 +43,7 @@ def render_mpl_table(data, title,font_size=12, row_colors=['#f1f1f2', 'w'], edge
     # plt.plot(np.arange(10), 4 * np.arange(10))
     fig.figimage(im, 0, fig.bbox.ymax - height)
     # fileName=str(int(time.time()))+".png"
-    fileName="data_image.png"
+    # fileName="data_tool_image.png"
     ax.set_title(title,color='green', fontsize=20,fontweight='bold')
     plt.savefig(fileName)
     plt.close('all')
