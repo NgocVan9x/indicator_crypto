@@ -24,15 +24,16 @@ def getDataFromBinance():
     for chat_id in chat_ids:
         bot.send_message(
             chat_id, "Start Scan List Coin Time UTC " + now_utc.strftime(fmt))
-    print(added_listcoin, list_coin)
+
     for price in prices:
         if price["symbol"][-3:] == "SDT" or price["symbol"][-3:] == "BTC" and price["symbol"] not in list_coin:
             coin = getDataAndSendBotTool(chat_ids, price["symbol"])
             if coin is not None:
                 list_coin.append(coin)
     # global added_listcoin
+    time.sleep(60*10)
     added_listcoin = not added_listcoin
-    print(added_listcoin, list_coin)
+
     return prices
 
 if __name__ == '__main__':
