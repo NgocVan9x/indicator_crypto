@@ -36,7 +36,7 @@ def getDataFromBinance():
     return prices
 
 if __name__ == '__main__':
-    schedule.every(1).minutes.do(getDataFromBinance)
+    schedule.every(3*60).minutes.do(getDataFromBinance)
     # getDataFromBinance()
     while True:
         try:
